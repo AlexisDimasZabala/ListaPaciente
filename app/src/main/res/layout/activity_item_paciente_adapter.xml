@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".item_paciente_adapter">
+
+    <TextView
+        android:id="@+id/txtNombreAdapter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/work_sans"
+        android:text="Nombre: "
+        android:textColor="@color/ColorLetrasAdapter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtTelefonoAdapter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/work_sans"
+        android:text="Telefono:"
+        android:textColor="@color/ColorLetrasAdapter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNombreAdapter" />
+
+    <TextView
+        android:id="@+id/txtEdadAdapter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:fontFamily="@font/work_sans"
+        android:text="Edad:"
+        android:textColor="@color/ColorLetrasAdapter"
+        app:layout_constraintEnd_toStartOf="@+id/txtEdad"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtGrupSanAdapter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/work_sans"
+        android:text="Grupo Sanguineo:"
+        android:textColor="@color/ColorLetrasAdapter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTelefonoAdapter" />
+
+    <TextView
+        android:id="@+id/txtVacAdapter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="5dp"
+        android:fontFamily="@font/work_sans"
+        android:text="Vac.Covid:"
+        android:textColor="@color/ColorLetrasAdapter"
+        app:layout_constraintEnd_toStartOf="@+id/txtVacunaCovid"
+        app:layout_constraintTop_toBottomOf="@+id/txtEdadAdapter" />
+
+    <TextView
+        android:id="@+id/txtRiesgoAdapter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="5dp"
+        android:fontFamily="@font/work_sans"
+        android:text="Riesgo:"
+        android:textColor="@color/ColorLetrasAdapter"
+        app:layout_constraintEnd_toStartOf="@+id/txtRiesgo"
+        app:layout_constraintTop_toBottomOf="@+id/txtVacAdapter" />
+
+    <TextView
+        android:id="@+id/txtNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/work_sans_bold"
+        android:text="nombre"
+        app:layout_constraintStart_toEndOf="@+id/txtNombreAdapter"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtTelefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/work_sans_bold"
+        android:text="tel"
+        app:layout_constraintStart_toEndOf="@+id/txtTelefonoAdapter"
+        app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
+
+    <TextView
+        android:id="@+id/txtGrupSang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/work_sans_bold"
+        android:text="GS"
+        app:layout_constraintStart_toEndOf="@+id/txtGrupSanAdapter"
+        app:layout_constraintTop_toBottomOf="@id/txtTelefono" />
+
+    <TextView
+        android:id="@+id/txtEdad"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="25dp"
+        android:fontFamily="@font/work_sans_bold"
+        android:text="edad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtVacunaCovid"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="25dp"
+        android:fontFamily="@font/work_sans_bold"
+        android:text="Vac"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtEdad" />
+
+    <TextView
+        android:id="@+id/txtRiesgo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="25dp"
+        android:fontFamily="@font/work_sans_bold"
+        android:text="riesg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtVacunaCovid" />
+</androidx.constraintlayout.widget.ConstraintLayout>

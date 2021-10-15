@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Fondo_App"
+    tools:context=".Login">
+
+    <Button
+        android:id="@+id/btnLoginIngresar"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/work_sans"
+        android:text="Ingresar"
+        android:textColor="@color/Botones_Color"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:cornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/plLoginContra"
+        app:layout_constraintVertical_bias="0.826"
+        app:strokeColor="@color/black"
+        app:strokeWidth="3dp" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/radius_background"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Pantalla Login"
+        app:titleMarginStart="50dp"
+        app:titleTextAppearance="@style/barra_sup"
+        app:titleTextColor="@color/Letras_Barra_sup" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/plLoginCorreo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+        app:layout_constraintVertical_bias="0.137"
+        app:srcCompat="@drawable/medicine" />
+
+    <EditText
+        android:id="@+id/plLoginCorreo"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/back"
+        android:ems="10"
+        android:fontFamily="@font/roboto"
+        android:hint="Ingrese su correo"
+        android:inputType="textPersonName"
+        android:paddingStart="20dp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@id/plLoginContra"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtLoginPrincipal" />
+
+    <TextView
+        android:id="@+id/txtLoginPrincipal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="250dp"
+        android:fontFamily="@font/tomorrow"
+        android:text="Login"
+        android:textColor="@color/Letras_Destacadas"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@id/plLoginCorreo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+        app:layout_constraintVertical_bias="0.135" />
+
+    <EditText
+        android:id="@+id/plLoginContra"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/back"
+        android:ems="10"
+        android:fontFamily="@font/roboto"
+        android:hint="Ingrese su contraseña"
+        android:inputType="textPassword"
+        android:paddingStart="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/plLoginCorreo" />
+
+    <TextView
+        android:id="@+id/txtLoginError"
+        android:layout_width="113dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:text="Correo o contraseña incorrectos"
+        android:textAlignment="viewStart"
+        android:textAllCaps="true"
+        android:textColor="@color/design_default_color_error"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.467"
+        app:layout_constraintStart_toEndOf="@+id/txtLoginPrincipal"
+        app:layout_constraintTop_toBottomOf="@id/imageView" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
