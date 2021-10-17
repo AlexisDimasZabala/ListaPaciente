@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class User {
 
-    public static final String URL_BASE = "http://192.168.1.110:5001";
+    public static final String URL_BASE = "http://192.168.1.104:5001";
 
     @SerializedName("nombre")
     String mName;

@@ -15,8 +15,8 @@
             android:id="@+id/ListViewPaciente"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/holo_blue_light"
-            android:divider="@color/Barra_sup"
+            android:background="@color/ITEM_Fondo"
+            android:divider="@color/ITEM_Barra_Separador"
             android:dividerHeight="2dp" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

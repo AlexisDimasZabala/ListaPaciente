@@ -5,8 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -21,6 +25,10 @@ public class HistorialClinico extends AppCompatActivity {
     //Array lista contacto
     private ListView listaContactos;
     private ArrayList<Paciente> lista;
+
+    //Foto y rating Paciente
+    private ImageView foto;
+    private RatingBar ratingBar;
 
     //datos Personales
     private TextView CodPaciente;
@@ -55,11 +63,15 @@ public class HistorialClinico extends AppCompatActivity {
         //Declaro Texto a subrayar
         TextView txtDP = findViewById(R.id.txtDPSub);
         TextView txtAP = findViewById(R.id.txtAPSub);
-        //Span de ambos textos para subrayar
+        TextView txtRT = findViewById(R.id.txtRatingBar);
+        //Span de textos para subrayar
         SpannableString textoDP = new SpannableString("Datos personales:");
         textoDP.setSpan(new UnderlineSpan(), 0, textoDP.length(), 0);
         txtDP.setText(textoDP);
         SpannableString textoAP = new SpannableString("Antecedentes personales:");
+        textoAP.setSpan(new UnderlineSpan(), 0, textoAP.length(), 0);
+        txtAP.setText(textoAP);
+        SpannableString textoRT = new SpannableString("Prioridad:");
         textoAP.setSpan(new UnderlineSpan(), 0, textoAP.length(), 0);
         txtAP.setText(textoAP);
 
@@ -69,36 +81,13 @@ public class HistorialClinico extends AppCompatActivity {
         findViewsById();
 
         cargarPost(pacienteId);
-
-/*
-        //Creo la lista de datos para recibir
-        Intent mIntent = getIntent();
-        String[] lista ;
-        lista = mIntent.getStringArrayExtra("ListaHistorial");
-
-        //seteo los datos con el orden que se creo el array
-        nombre.setText(lista[0]);
-        apellido.setText(lista[1]);
-        edad.setText(lista[2]);
-        grupSang.setText(lista[3]);
-        telefono.setText(lista[4]);
-        riesgo.setText(lista[5]);
-        vacCovid.setText(lista[6]);
-        direccion.setText(lista[7]);
-        alcohol.setText(lista[8]);
-        tabaco.setText(lista[9]);
-        drogas.setText(lista[10]);
-        infusiones.setText(lista[11]);
-        respiratorio.setText(lista[12]);
-        neurologico.setText(lista[13]);
-        quirurgicos.setText(lista[14]);
-        alergias.setText(lista[15]);
-        //Log.d("My etiqueta de nombre",lista[0]);*/
-
-
     }
 
     private void findViewsById(){
+        //foto y rating paciente
+        foto = findViewById(R.id.imgHistorialFotoPaciente);
+        ratingBar = findViewById(R.id.ratingHistorialPrioridad);
+
         //Datos Personales
         nombre = findViewById(R.id.txtNombreHistorial);
         apellido = findViewById(R.id.txtApellidoHistorial);
@@ -134,6 +123,14 @@ public class HistorialClinico extends AppCompatActivity {
 
                 Post post = (Post) response.body();
 
+                //Foto y rating paciente
+                Picasso.get()
+                        .load(post.getFoto())
+                        .error(R.mipmap.ic_launcher_round)
+                        .into(foto);
+                //ratingBar.setRating(3.5f);
+                ratingBar.setRating(post.getRating());
+
                 //Datos Personales
                 //codPaciente.setText(post.getcodPaciente());  //falta en la vista
                 nombre.setText(post.getNombre());
@@ -164,51 +161,5 @@ public class HistorialClinico extends AppCompatActivity {
             }
         });
     }
-/*
-        call.enqueue(new Callback<Paciente>() {
-            @Override
-            public void onResponse(Call<Paciente> call, Response<Paciente> response) {
-                Paciente paciente = (Paciente) response.body();
 
-                //Datos Personales
-                nombre.setText(paciente.getNombre());
-                apellido.setText(paciente.getApellido());
-                telefono.setText(paciente.getTelefono());
-                grupSang.setText(paciente.getGrupoSanguineo());
-                direccion.setText(paciente.getDireccion());
-                edad.setText(paciente.getEdad());
-                vacCovid.setText(paciente.getVacCovid());
-                riesgo.setText(paciente.getRiesgo());
-
-                //Antecedentes personales
-                alcohol.setText(paciente.getAlcohol());
-                tabaco.setText(paciente.getTabaco());
-                drogas.setText(paciente.getDrogas());
-                infusiones.setText(paciente.getInfusiones());
-                respiratorio.setText(paciente.getRespiratorio());
-                neurologico.setText(paciente.getNeurologico());
-                quirurgicos.setText(paciente.getQuirurgico());
-                alergias.setText(paciente.getAlergias());
-
-                /*textViewNombreDetalle.setText(post.getNombre());
-                textViewEmailDetalle.setText(post.getEmail());
-                textViewDomicilioDetalle.setText(post.getDomicilio());
-                textViewTelefonoDetalle.setText(post.getTelefono());
-
-                //textViewTituloDetalle.setText(post.getTitle());
-                //textViewContenidoDetalle.setText(post.getBody());
-            }
-
-            @Override
-            public void onFailure(Call<Paciente> call, Throwable t) {
-            }
-        //});
-    }*/
-
-
-    /*
-
-    SpannableString mitextoU = new SpannableString("Mamut chiquito");
-    mitextoU.setSpan(new UnderlineSpan(), 0, mitextoU.length(), 0);
-    textView.setText(mitextoU);*/
 }

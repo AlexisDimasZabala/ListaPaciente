@@ -14,4 +14,7 @@
     <color name="Letras_Destacadas">#ED212121</color>
     <color name="Fondo_Btn_Login">#F4F1F1</color>
     <color name="ColorLetrasAdapter">#292727</color>
+    <color name="ITEM_Fondo">#E81AA7E6</color>
+    <color name="ITEM_Barra_Separador">#C1FF4A14</color>
+    <color name="RatingBar">#FF524E</color>
 </resources>

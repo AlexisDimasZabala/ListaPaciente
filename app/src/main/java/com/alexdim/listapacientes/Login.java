@@ -47,6 +47,8 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+        getSupportActionBar().hide();
+
         Intent intent = getIntent();
 
         //id = intent.getIntExtra("EXTRA_IDREGISTRO",0);

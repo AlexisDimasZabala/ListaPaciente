@@ -2,6 +2,11 @@ package com.alexdim.listapacientes;
 
 public class Post {
 
+    //Foto Paciente
+    private String foto;
+    //rating
+    private float rating;
+
     //Datos Personales
     private int id;
     private int CodPaciente;
@@ -25,9 +30,7 @@ public class Post {
     private String quirurgico;
     private String alergias;
 
-    private boolean activo;
-
-    public Post(int id, int codPaciente, String nombre, String apellido, String email, int edad, String grupoSanguineo, String telefono, String riesgo, String vacCovid, String domicilio, String alcohol, String tabaco, String drogas, String infusiones, String respiratorio, String neurologico, String quirurgico, String alergias, boolean activo) {
+    public Post(int id, int codPaciente, String nombre, String apellido, String email, int edad, String grupoSanguineo, String telefono, String riesgo, String vacCovid, String domicilio, String alcohol, String tabaco, String drogas, String infusiones, String respiratorio, String neurologico, String quirurgico, String alergias, float rating ,String foto) {
         this.id = id;
         this.CodPaciente = codPaciente;
         this.nombre = nombre;
@@ -47,7 +50,8 @@ public class Post {
         this.neurologico = neurologico;
         this.quirurgico = quirurgico;
         this.alergias = alergias;
-        this.activo = activo;
+        this.rating = rating;
+        this.foto = foto;
     }
 
     public int getId() {
@@ -200,11 +204,19 @@ public class Post {
         this.alergias = alergias;
     }
 
-    public boolean isActivo() {
-        return activo;
+    public float getRating() {
+        return rating;
     }
 
-    public void setActivo(boolean activo) {
-        this.activo = activo;
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }

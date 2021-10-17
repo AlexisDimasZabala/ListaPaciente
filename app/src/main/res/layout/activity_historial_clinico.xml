@@ -8,11 +8,27 @@
     tools:context=".HistorialClinico">
 
     <TextView
+        android:id="@+id/txtRatingBar"
+        android:layout_width="83dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/tauri"
+        android:text="Prioridad:"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/ratingHistorialPrioridad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.373"
+        app:layout_constraintStart_toEndOf="@+id/imgHistorialFotoPaciente"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="14dp"
         android:fontFamily="sans-serif-black"
         android:text="Alcohol:"
         android:textSize="15dp"
@@ -90,7 +106,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="20dp"
         android:text="Alergias"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -112,7 +128,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="20dp"
         android:text="infusiones"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -182,7 +198,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="sans-serif-black"
         android:text="Alergias:"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -233,7 +249,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="15dp"
         android:fontFamily="sans-serif-black"
         android:text="Grupo Sanguineo:"
         android:textSize="15dp"
@@ -268,7 +284,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="15dp"
         android:text="Gs"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/txtDireccionHistorial"
@@ -319,38 +335,41 @@
         app:layout_constraintEnd_toStartOf="@+id/txtVacCovHistorial" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/tauri"
         android:text="Historia Clinica Del paciente"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/txtDPSub"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imgHistorialFotoPaciente"
+        app:layout_constraintVertical_bias="0.721" />
 
     <TextView
         android:id="@+id/txtDPSub"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
         android:fontFamily="@font/tauri"
         android:text="Datos personales:"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.093"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="15dp"
         android:fontFamily="sans-serif-black"
         android:text="Nombre:"
         android:textSize="15dp"
@@ -362,7 +381,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="15dp"
         android:fontFamily="sans-serif-black"
         android:text="Telefono:"
         android:textSize="15dp"
@@ -374,7 +393,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginBottom="22dp"
+        android:layout_marginBottom="16dp"
         android:text="Nombre"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/txtTelefonoHistorial"
@@ -385,7 +404,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="15dp"
         android:text="Telefono"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/textView10"
@@ -444,4 +463,30 @@
         app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toEndOf="@+id/txtAPSub"
         app:srcCompat="@drawable/medicine" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgHistorialFotoPaciente"
+        android:layout_width="97dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="4dp"
+        android:foreground="@drawable/radio_foto_paciente"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.156"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/fotos_redondeada"
+        tools:srcCompat="@mipmap/ic_launcher_round" />
+
+    <RatingBar
+        android:id="@+id/ratingHistorialPrioridad"
+        style="@style/Widget.AppCompat.RatingBar.Indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:progressTint="@color/RatingBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toEndOf="@+id/imgHistorialFotoPaciente"
+        app:layout_constraintTop_toBottomOf="@+id/txtRatingBar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
