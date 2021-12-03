@@ -1,7 +1,8 @@
 package com.alexdim.listapacientes;
 
+import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,21 +13,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOError;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class Login extends AppCompatActivity {
 
@@ -34,13 +23,7 @@ public class Login extends AppCompatActivity {
     private EditText plUsuario;
     private EditText plContra;
     private Button btnIngresar;
-    //private Button btnRegistrar;
-
-    //private int id;
-    private String nombre;
-    private String contra;
-
-    ApiService apiService;
+    private Button btnRegistrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,88 +32,95 @@ public class Login extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        Intent intent = getIntent();
-
-        //id = intent.getIntExtra("EXTRA_IDREGISTRO",0);
-        //usuario = intent.getStringExtra("EXTRA_USUARIO");
-        //contra = intent.getStringExtra("EXTRA_CONTRA");
-
         txtError = findViewById(R.id.txtLoginError);
 
-        plUsuario = findViewById(R.id.plLoginCorreo);
+        plUsuario = findViewById(R.id.plRegiPacNombre);
         plContra = findViewById(R.id.plLoginContra);
 
-        btnIngresar = findViewById(R.id.btnLoginIngresar);
+        btnIngresar = findViewById(R.id.btnActivarPersona);
 
-        //btnRegistrar = findViewById(R.id.btnLoginRegistrarse);
+        btnRegistrar = findViewById(R.id.btnRegisDocCompletar);
 
         btnIngresar.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
-                login();
-            }
-        });
-
-
-    }
-
-    private void login() {
-        /*Intent intent = new Intent(Login.this,VistaPaciente.class);
-        startActivity(intent);*/
-
-        //verificar usuario y contraseña
-        nombre= plUsuario.getText().toString();
-        contra= plContra.getText().toString();
-
-        if (!(nombre.equals("") && !contra.equals("")))
-        {
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(User.URL_BASE)
-                    //.addConverterFactory(ScalarsConverterFactory.create())
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-
-            apiService = retrofit.create(ApiService.class);
-
-            createUser();
-        }
-    }
-
-    private void createUser(){
-
-        User user = new User(nombre,contra);
-        Call<User> call = apiService.post(user);
-
-        call.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                //Guardo la respuesta de la api
-                List<User> userlist = new ArrayList<>();
-                userlist.add(response.body());
-
-                //respuesta de la api
-                //Toast.makeText(Login.this, response.code()+ " Response", Toast.LENGTH_SHORT).show();
-
-                if (response.isSuccessful()){
-                    if(response.body() != null){
-                        Intent intent = new Intent(Login.this,VistaPaciente.class);
-                        startActivity(intent);
-                    }
-                    else {
-                        txtError.setText("Usuario o contraseña incorrecta");
-                        Toast.makeText(Login.this, "Usuario o contraseña incorrecta", Toast.LENGTH_SHORT).show();
-                    }
-                }else {
-                    Toast.makeText(Login.this, "Sin conneccion a la api", Toast.LENGTH_SHORT).show();
+                if(validarDatos()){
+                    String email=plUsuario.getText().toString();
+                    String password=plContra.getText().toString();
+                    verificarLoginApi(email, password);
                 }
             }
+        });
+
+        btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
-
-                Toast.makeText(Login.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-
+            public void onClick(View v) {
+                Intent intent = new Intent(Login.this, nuevo_doctor.class);
+                startActivity(intent);
             }
         });
+    }
+
+    private boolean validarDatos(){
+
+        if(plUsuario.getText().toString().isEmpty()){
+            plUsuario.setError("dato obligatorio");
+            return false;
+        }
+
+        if(plContra.getText().toString().isEmpty()){
+            plContra.setError("dato obligatorio");
+            return false;
+        }
+        return true;
+    }
+
+    private void verificarLoginApi(String nombre, String contra){
+
+        ApiService api = RetrofitInstance.getInstance().create(ApiService.class);
+        Call<String> call = api.Login(nombre,contra);
+
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.code()==200 && !response.body().isEmpty()){
+                    logueado();
+                }else {
+                    incorrecto();
+                    //txtError.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.i("API", "onFailure: error interno de validación de API" );
+                Toast.makeText(Login.this, "No funciono", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void logueado(){
+        GuardarPreferencia(); // gaurda el usuario en sharedpreference
+        Toast.makeText(Login.this, "Bienvenido " + plUsuario.getText().toString(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(Login.this, Menu.class);
+        startActivity(intent);
+    }
+
+    private void incorrecto(){
+        plUsuario.setError("Usuario incorrecto");
+        plContra.setError("Contraseña incorrecta");
+    }
+
+    private void GuardarPreferencia(){
+        SharedPreferences preferences = getSharedPreferences
+                ("Credenciales", Context.MODE_PRIVATE);
+
+        String nombre = plUsuario.getText().toString();
+
+        SharedPreferences.Editor editor=preferences.edit();
+        editor.putString("usuario",nombre);
+
+        editor.commit();
+
     }
 
 }

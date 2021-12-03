@@ -3,19 +3,18 @@ package com.alexdim.listapacientes;
 public class Paciente {
 
     //Datos Personales
-    private int id;
-    private int CodPaciente;
+    private int idPaciente;
     private String nombre;
     private String apellido;
-    private String email;
     private int edad;
     private String grupoSanguineo;
-    private String telefono;
     private String riesgo;
     private String vacCovid;
-
-    //Datos Historial
-    private String direccion;
+    private String email;
+    private String telefono;
+    private String foto;
+    private String rating;
+    private String domicilio;
     private String alcohol;
     private String tabaco;
     private String drogas;
@@ -24,21 +23,25 @@ public class Paciente {
     private String neurologico;
     private String quirurgico;
     private String alergias;
+    private int activo;
+    private String documento;
 
-    private boolean activo;
+    public Paciente() {
+    }
 
-    public Paciente(int contentLayoutId, int id, int codPaciente, String nombre, String apellido, String email, int edad, String grupoSanguineo, String telefono, String riesgo, String vacCovid, String direccion, String alcohol, String tabaco, String drogas, String infusiones, String respiratorio, String neurologico, String quirurgico, String alergias, boolean activo) {
-        this.id = id;
-        CodPaciente = codPaciente;
+    public Paciente(int idPaciente, String nombre, String apellido, int edad, String grupoSanguineo, String riesgo, String vacCovid, String email, String telefono, String foto, String rating, String domicilio, String alcohol, String tabaco, String drogas, String infusiones, String respiratorio, String neurologico, String quirurgico, String alergias, int activo, String documento) {
+        this.idPaciente = idPaciente;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.email = email;
         this.edad = edad;
         this.grupoSanguineo = grupoSanguineo;
-        this.telefono = telefono;
         this.riesgo = riesgo;
         this.vacCovid = vacCovid;
-        this.direccion = direccion;
+        this.email = email;
+        this.telefono = telefono;
+        this.foto = foto;
+        this.rating = rating;
+        this.domicilio = domicilio;
         this.alcohol = alcohol;
         this.tabaco = tabaco;
         this.drogas = drogas;
@@ -48,51 +51,15 @@ public class Paciente {
         this.quirurgico = quirurgico;
         this.alergias = alergias;
         this.activo = activo;
+        this.documento = documento;
     }
 
-    /*
-    public Paciente(int id, String nombre, String apellido, int edad, String grupoSanguineo,String telefono, String riesgo, String vacCovid) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.edad = edad;
-        this.telefono = telefono;
-        this.grupoSanguineo = grupoSanguineo;
-        this.riesgo = riesgo;
-        this.vacCovid = vacCovid;
+    public int getIdPaciente() {
+        return idPaciente;
     }
 
-    public Paciente(int id, String nombre, String apellido, int edad, String grupoSanguineo, String telefono, String riesgo, String vacCovid, String direccion, String alcohol, String tabaco, String drogas, String infusiones, String respiratorio, String neurologico, String quirurgico, String alergias) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.edad = edad;
-        this.grupoSanguineo = grupoSanguineo;
-        this.telefono = telefono;
-        this.riesgo = riesgo;
-        this.vacCovid = vacCovid;
-        this.direccion = direccion;
-        this.alcohol = alcohol;
-        this.tabaco = tabaco;
-        this.drogas = drogas;
-        this.infusiones = infusiones;
-        this.respiratorio = respiratorio;
-        this.neurologico = neurologico;
-        this.quirurgico = quirurgico;
-        this.alergias = alergias;
-    }*/
-
-    public Paciente() {
-
-    }
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setIdPaciente(int idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
     public String getNombre() {
@@ -127,14 +94,6 @@ public class Paciente {
         this.grupoSanguineo = grupoSanguineo;
     }
 
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
     public String getRiesgo() {
         return riesgo;
     }
@@ -151,12 +110,44 @@ public class Paciente {
         this.vacCovid = vacCovid;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getEmail() {
+        return email;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public String getDomicilio() {
+        return domicilio;
+    }
+
+    public void setDomicilio(String domicilio) {
+        this.domicilio = domicilio;
     }
 
     public String getAlcohol() {
@@ -221,5 +212,21 @@ public class Paciente {
 
     public void setAlergias(String alergias) {
         this.alergias = alergias;
+    }
+
+    public int getActivo() {
+        return activo;
+    }
+
+    public void setActivo(int activo) {
+        this.activo = activo;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(String documento) {
+        this.documento = documento;
     }
 }

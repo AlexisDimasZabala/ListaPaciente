@@ -2,13 +2,17 @@ package com.alexdim.listapacientes;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -17,8 +21,6 @@ import java.util.ArrayList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HistorialClinico extends AppCompatActivity {
 
@@ -31,16 +33,13 @@ public class HistorialClinico extends AppCompatActivity {
     private RatingBar ratingBar;
 
     //datos Personales
-    private TextView CodPaciente;
     private TextView nombre;
     private TextView apellido;
-    private TextView email;
     private TextView edad;
     private TextView grupSang;
     private TextView telefono;
     private TextView riesgo;
     private TextView vacCovid;
-
 
     //Antecendentes personales
     private TextView domicilio;
@@ -53,12 +52,18 @@ public class HistorialClinico extends AppCompatActivity {
     private TextView quirurgicos;
     private TextView alergias;
 
-    private TextView activo;
+    private String email,fotoStr,documento;
+    private int id_paciente;
+    private int activo;
+
+    private Button btnHistorialEditar,btnEliminarPersona;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historial_clinico);
+
+        getSupportActionBar().hide();
 
         //Declaro Texto a subrayar
         TextView txtDP = findViewById(R.id.txtDPSub);
@@ -73,25 +78,67 @@ public class HistorialClinico extends AppCompatActivity {
         txtAP.setText(textoAP);
         SpannableString textoRT = new SpannableString("Prioridad:");
         textoAP.setSpan(new UnderlineSpan(), 0, textoAP.length(), 0);
-        txtAP.setText(textoAP);
+        txtAP.setText(textoRT);
 
         Bundle extras = getIntent().getExtras();
-        int pacienteId = extras.getInt("KEY_ID");
+        String Documento = extras.getString("EXTRA_DOCUMENTO");
+        cargarDatosDesdeApi(Documento);
 
         findViewsById();
 
-        cargarPost(pacienteId);
+        btnHistorialEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditarHistorial();
+            }
+        });
+
+        btnEliminarPersona.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EliminarPaciente(Documento);
+            }
+        });
+    }
+
+    private void EditarHistorial(){
+        Intent intent = new Intent(HistorialClinico.this, Editar_historial_clinico.class);
+        intent.putExtra("EXTRA_IDPACIENTE", id_paciente);
+        intent.putExtra("EXTRA_DOCUMENTO", documento);
+        intent.putExtra("EXTRA_EMAIL", email);
+        intent.putExtra("EXTRA_FOTO", fotoStr);
+        intent.putExtra("EXTRA_EDAD", edad.getText().toString());
+        intent.putExtra("EXTRA_NOMBRE", nombre.getText().toString());
+        intent.putExtra("EXTRA_TELEFONO", telefono.getText().toString());
+        intent.putExtra("EXTRA_GRUPSANG", grupSang.getText().toString());
+        intent.putExtra("EXTRA_DOMICILIO", domicilio.getText().toString());
+        intent.putExtra("EXTRA_APELLIDO", apellido.getText().toString());
+        intent.putExtra("EXTRA_VACCOVID", vacCovid.getText().toString());
+        intent.putExtra("EXTRA_RIESGO", riesgo.getText().toString());//aca
+        intent.putExtra("EXTRA_ALCOHOL", alcohol.getText().toString());
+        intent.putExtra("EXTRA_TABACO", tabaco.getText().toString());
+        intent.putExtra("EXTRA_DROGAS", drogas.getText().toString());
+        intent.putExtra("EXTRA_INFUSIONES", infusiones.getText().toString());
+        intent.putExtra("EXTRA_RESPIRATORIO", respiratorio.getText().toString());
+        intent.putExtra("EXTRA_NEUROLOGICO", neurologico.getText().toString());
+        intent.putExtra("EXTRA_QUIRURGICO", quirurgicos.getText().toString());
+        intent.putExtra("EXTRA_ALERGIAS", alergias.getText().toString());
+        startActivity(intent);
     }
 
     private void findViewsById(){
+        //btn editar
+        btnHistorialEditar = findViewById(R.id.btnActivarPersona);
+        btnEliminarPersona = findViewById(R.id.btnHistorialEliminarPersona);
+
         //foto y rating paciente
-        foto = findViewById(R.id.imgHistorialFotoPaciente);
+        foto = findViewById(R.id.imgActivarPaciente);
         ratingBar = findViewById(R.id.ratingHistorialPrioridad);
 
         //Datos Personales
         nombre = findViewById(R.id.txtNombreHistorial);
         apellido = findViewById(R.id.txtApellidoHistorial);
-        telefono = findViewById(R.id.txtTelefonoHistorial);
+        telefono = findViewById(R.id.txtActivarDocumento);
         grupSang = findViewById(R.id.txtGrupoSangHistorial);
         domicilio = findViewById(R.id.txtDireccionHistorial);
         edad = findViewById(R.id.txtEdadHistorial);
@@ -109,57 +156,92 @@ public class HistorialClinico extends AppCompatActivity {
         alergias = findViewById(R.id.txtAlergiasHistorial);
     }
 
-    private void cargarPost(int id){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(User.URL_BASE)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        ApiService postService = retrofit.create(ApiService.class);
-        Call<Post> call = postService.getPostById(id);
+    private void cargarDatosDesdeApi(String Documento) {
+        final Paciente item = new Paciente();
 
-        call.enqueue(new Callback<Post>() {
+        ApiService api = RetrofitInstance.getInstance().create(ApiService.class);
+        Call<Paciente> call = api.ListarPorDocumento(Documento);
+
+        call.enqueue(new Callback<Paciente>() {
             @Override
-            public void onResponse(Call<Post> call, Response<Post> response) {
+            public void onResponse(Call<Paciente> call, Response<Paciente> response) {
+                if (response.code() == 404){
+                    Intent intent = new Intent(HistorialClinico.this, Menu.class);
+                    Toast.makeText(HistorialClinico.this, "Persona inexistente", Toast.LENGTH_LONG).show();
+                    startActivity(intent);
+                }else
+                {
+                    if (response.body() == null || response.body().getActivo() == 0) {
+                        Intent intent = new Intent(HistorialClinico.this, Menu.class);
+                        Toast.makeText(HistorialClinico.this, "Persona Inactiva", Toast.LENGTH_LONG).show();
+                        startActivity(intent);
+                    }
+                    documento = response.body().getDocumento();
+                    id_paciente = response.body().getIdPaciente();
+                    email = response.body().getEmail();
+                    activo = response.body().getActivo();
+                    fotoStr = response.body().getFoto();
+                    nombre.setText(response.body().getNombre());
+                    apellido.setText(response.body().getApellido());
+                    edad.setText(String.valueOf(response.body().getEdad()));
+                    grupSang.setText(response.body().getGrupoSanguineo());
+                    riesgo.setText(response.body().getRiesgo());
+                    vacCovid.setText(response.body().getVacCovid());
+                    //email.setText(response.body().getEmail());
+                    telefono.setText(response.body().getTelefono());
+                    domicilio.setText(response.body().getDomicilio());
+                    alcohol.setText(response.body().getAlcohol());
+                    tabaco.setText(response.body().getTabaco());
+                    drogas.setText(response.body().getDrogas());
+                    infusiones.setText(response.body().getInfusiones());
+                    respiratorio.setText(response.body().getRespiratorio());
+                    neurologico.setText(response.body().getNeurologico());
+                    quirurgicos.setText(response.body().getQuirurgico());
+                    alergias.setText(response.body().getAlergias());
 
-                Post post = (Post) response.body();
-
-                //Foto y rating paciente
-                Picasso.get()
-                        .load(post.getFoto())
-                        .error(R.mipmap.ic_launcher_round)
-                        .into(foto);
-                //ratingBar.setRating(3.5f);
-                ratingBar.setRating(post.getRating());
-
-                //Datos Personales
-                //codPaciente.setText(post.getcodPaciente());  //falta en la vista
-                nombre.setText(post.getNombre());
-                apellido.setText(post.getApellido());
-                telefono.setText(post.getTelefono());
-                //textViewEmailDetalle.setText(post.getEmail()); //falta en la vista
-                edad.setText(String.valueOf(post.getEdad()));//post.getEdad()); hacia falta conversion a int
-                grupSang.setText(post.getGrupoSanguineo());
-                telefono.setText(post.getTelefono());
-                riesgo.setText(post.getRiesgo());
-                vacCovid.setText(post.getVacCovid());
-                domicilio.setText(post.getDomicilio());
-
-                //int id, activo)
-                //Antecedentes
-                alcohol.setText(post.getAlcohol());
-                tabaco.setText(post.getTabaco());
-                drogas.setText(post.getDrogas());
-                infusiones.setText(post.getInfusiones());
-                respiratorio.setText(post.getRespiratorio());
-                neurologico.setText(post.getNeurologico());
-                quirurgicos.setText(post.getQuirurgico());
-                alergias.setText(post.getAlergias());
+                    //Foto y rating paciente
+                    Picasso.get()
+                            .load(response.body().getFoto())
+                            .error(R.mipmap.ic_launcher_round)
+                            .into(foto);
+                    float rating = Float.parseFloat(response.body().getRating());
+                    ratingBar.setRating(rating);
+                }
             }
 
             @Override
-            public void onFailure(Call<Post> call, Throwable t) {
+            public void onFailure(Call<Paciente> call, Throwable t) {
+                Toast.makeText(HistorialClinico.this, "Fallo envio a Api", Toast.LENGTH_LONG).show();
             }
         });
     }
+
+    private void EliminarPaciente(String Documento){
+        // definimos llamada al API
+        ApiService api = RetrofitInstance.getInstance().create(ApiService.class);
+
+        Call<Integer> call = null;
+
+        call = api.DesactivarPaciente(Documento);
+
+        call.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                if (response.code() == 200){
+                    Toast.makeText(HistorialClinico.this, "Eliminado Con Exito", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(HistorialClinico.this, Menu.class);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(HistorialClinico.this, "Hubo un error", Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+                Toast.makeText(HistorialClinico.this, "Error: "+ t, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
 
 }

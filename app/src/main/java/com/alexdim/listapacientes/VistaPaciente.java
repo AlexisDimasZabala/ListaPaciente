@@ -56,7 +56,7 @@ public class VistaPaciente extends AppCompatActivity implements SwipeRefreshLayo
 
         listaPost = new ArrayList<Post>();
 
-        obtenerListaApi();
+        //obtenerListaApi();
 
         adapter = new item_paciente_adapter(listaPost);
 
@@ -67,7 +67,7 @@ public class VistaPaciente extends AppCompatActivity implements SwipeRefreshLayo
         listaContactos.setOnItemClickListener(this);
 
     }
-    private void obtenerListaApi(){
+    /*private void obtenerListaApi(){
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(User.URL_BASE)
@@ -89,7 +89,7 @@ public class VistaPaciente extends AppCompatActivity implements SwipeRefreshLayo
             public void onFailure(Call<List<Post>> call, Throwable t) {
             }
         });
-    }
+    }*/
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 

@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Fondo_App"
+    tools:context=".nuevo_paciente_medicos">
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="146dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/work_sans_bold"
+        android:text="Alergias"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spiRegistroNeurologico" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="146dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/work_sans_bold"
+        android:text="Quirurgico"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView27"
+        app:layout_constraintTop_toBottomOf="@+id/spiRegistroRespiratorio" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="146dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/work_sans_bold"
+        android:text="Neurologico"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/textView28"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spiRegistroInfusiones" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="146dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/work_sans_bold"
+        android:text="Respiratorio"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView25"
+        app:layout_constraintTop_toBottomOf="@+id/spiRegistroDrogas" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="146dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/work_sans_bold"
+        android:text="Infusiones"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/textView26"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spiRegistroTabaco" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="146dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/work_sans_bold"
+        android:text="Drogas"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/spiRegistroAlcohol" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="146dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/work_sans_bold"
+        android:text="Tabaco"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/textView24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spiRegistroVacCovid" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="146dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/work_sans_bold"
+        android:text="Vacuna Covid"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spiRegistroGrupoSanguineo" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="146dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/work_sans_bold"
+        android:text="Alcohol"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/spiRegistroRiesgo" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="146dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/work_sans_bold"
+        android:text="Riesgo"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+
+    <Spinner
+        android:id="@+id/spiRegistroAlergias"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:background="@color/Fondo_Btn_Login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView29" />
+
+    <Spinner
+        android:id="@+id/spiRegistroNeurologico"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:background="@color/Fondo_Btn_Login"
+        app:layout_constraintEnd_toStartOf="@+id/spiRegistroQuirurgico"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView27" />
+
+    <Spinner
+        android:id="@+id/spiRegistroQuirurgico"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:background="@color/Fondo_Btn_Login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spiRegistroNeurologico"
+        app:layout_constraintTop_toBottomOf="@+id/textView28" />
+
+    <Spinner
+        android:id="@+id/spiRegistroRespiratorio"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:background="@color/Fondo_Btn_Login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spiRegistroInfusiones"
+        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+    <Spinner
+        android:id="@+id/spiRegistroInfusiones"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:background="@color/Fondo_Btn_Login"
+        app:layout_constraintEnd_toStartOf="@+id/spiRegistroRespiratorio"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+    <Spinner
+        android:id="@+id/spiRegistroTabaco"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:background="@color/Fondo_Btn_Login"
+        app:layout_constraintEnd_toStartOf="@+id/spiRegistroDrogas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <Spinner
+        android:id="@+id/spiRegistroDrogas"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:background="@color/Fondo_Btn_Login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spiRegistroTabaco"
+        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+    <Spinner
+        android:id="@+id/spiRegistroVacCovid"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:background="@color/Fondo_Btn_Login"
+        app:layout_constraintEnd_toStartOf="@+id/spiRegistroAlcohol"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <Spinner
+        android:id="@+id/spiRegistroAlcohol"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:background="@color/Fondo_Btn_Login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spiRegistroVacCovid"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <Spinner
+        android:id="@+id/spiRegistroRiesgo"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:background="@color/Fondo_Btn_Login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spiRegistroGrupoSanguineo"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/radius_background"
+        android:minHeight="?android:attr/actionBarSize"
+        android:theme="?android:attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Datos Medicos"
+        app:titleMarginStart="50dp"
+        app:titleTextAppearance="@style/barra_sup"
+        app:titleTextColor="@color/Letras_Barra_sup" />
+
+    <Button
+        android:id="@+id/btnActivarPersona"
+        android:layout_width="270dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/work_sans"
+        android:text="Ingresar Paciente"
+        android:textColor="@color/Botones_Color"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:cornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/black"
+        app:strokeWidth="3dp" />
+
+    <Spinner
+        android:id="@+id/spiRegistroGrupoSanguineo"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:background="@color/Fondo_Btn_Login"
+        app:layout_constraintEnd_toStartOf="@+id/spiRegistroRiesgo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="146dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/work_sans_bold"
+        android:text="Grupo Sanguineo"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

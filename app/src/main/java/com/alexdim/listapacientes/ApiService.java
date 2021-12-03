@@ -9,38 +9,43 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiService {
 
-    @GET("/api/Persona")
-    Call<List<Post>> getPost();
+    @POST("Doctor/IniciarSesion")
+    Call<String> Login(@Query("nombre") String nombre, @Query("contra") String contra);
 
-    @GET("/api/Persona/{id}")
-    Call<Post> getPostById(@Path("id") int postId);
+    @POST("Doctor/AgregarDoctor")
+    Call<Integer> agregarDoctor(@Body Doctor doctor);
 
-    @POST("/api/Usuario")
-    Call<User> post(@Body User user);
+    @GET("Paciente/ListarPorDocumento/{documento}")
+    Call<Paciente> ListarPorDocumento(@Path("documento") String Documento);
 
-    /*@FormUrlEncoded
-    //@Headers("Content-Type: application/json")
-    @POST("/api/Usuario")
-    //Call<User> post(@Body String user);
-    Call<User> post(
-            @Field("nombre") String nombre,
-            @Field("contra") String contra
-            /*@Field("nombre") String nombre,
-            @Field("contra") String contra
-    )*/
-    //Call<User> post(@Body User user);
+    @POST("Paciente/AgregarPaciente")
+    Call<Integer> agregarPaciente(@Body Paciente paciente);
 
-    /*@FormUrlEncoded
-    @POST("/api/Usuario")
-    Call<User> post(
-            @Field("nombre") String nombre,
-            @Field("contra") String contra
-    );*/
+    @PUT("Paciente/EditarPaciente")
+    Call<Integer> EditarPaciente(@Body Paciente paciente);
+
+    @PUT("Paciente/Activar/{documento}")
+    Call<Integer> ActivarPaciente(@Path("documento") String Documento);
+
+    @PUT("Paciente/Desactivar/{documento}")
+    Call<Integer> DesactivarPaciente(@Path("documento") String Documento);
+
+    //@PUT("alumno/editar")
+    //Call<Integer> editarAlumno(@Body Paciente alumno);
+
+    //@GET("alumno/listartodos")
+    //Call<List<Paciente>> ListarTodos();
+
+    //@GET("alumno/listarfavoritos")
+    //Call<List<Paciente>> ListarFavoritos(@Header("Authorization") String token);
 
 }

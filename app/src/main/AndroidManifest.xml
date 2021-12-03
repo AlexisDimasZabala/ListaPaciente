@@ -12,11 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ListaPacientes">
-        <activity android:name=".HistorialClinico"/>
+        <activity android:name=".ActivarPaciente"></activity>
+        <activity android:name=".Editar_historial_clinico" />
+        <activity android:name=".nuevo_doctor" />
+        <activity android:name=".nuevo_paciente_medicos" />
+        <activity android:name=".nuevo_paciente" />
+        <activity android:name=".Menu" />
+        <activity android:name=".HistorialClinico" />
         <activity android:name=".VistaPaciente" />
-        <activity android:name=".Paciente"
+        <activity
+            android:name=".Paciente"
             tools:ignore="Instantiatable" />
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
         <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,7 +36,5 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
-
 
 </manifest>

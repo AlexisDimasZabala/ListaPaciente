@@ -1,3 +1,78 @@
 <resources>
     <string name="app_name">ListaPacientes</string>
+
+    <string-array name="GrupoSanguineo">
+        <item>O-</item>
+        <item>O+</item>
+        <item>A−</item>
+        <item>A+</item>
+        <item>B−</item>
+        <item>B+</item>
+        <item>AB−</item>
+        <item>AB+</item>
+    </string-array>
+
+    <string-array name="Riesgo">
+        <item>Si</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="VacCovid">
+        <item>No</item>
+        <item>D1</item>
+        <item>D1 D2</item>
+    </string-array>
+
+    <string-array name="Alcohol">
+        <item>Niega</item>
+        <item>Ocasional</item>
+        <item>Habitual</item>
+    </string-array>
+
+    <string-array name="Tabaco">
+        <item>Niega</item>
+        <item>Ocasional</item>
+        <item>Habitual</item>
+    </string-array>
+
+    <string-array name="Drogas">
+        <item>Niega</item>
+        <item>Ocasional</item>
+        <item>Habitual</item>
+    </string-array>
+
+    <string-array name="Infusiones">
+        <item>Niega</item>
+        <item>Ocasional</item>
+        <item>Habitual</item>
+    </string-array>
+
+    <string-array name="Respiratorio">
+        <item>Sin Datos</item>
+        <item>1 proc</item>
+        <item>2 proc</item>
+        <item>3 o mas</item>
+    </string-array>
+
+    <string-array name="Neurologico">
+        <item>Sin Datos</item>
+        <item>1 proc</item>
+        <item>2 proc</item>
+        <item>3 o mas</item>
+    </string-array>
+
+    <string-array name="Quirurgico">
+        <item>Sin Datos</item>
+        <item>1 proc</item>
+        <item>2 proc</item>
+        <item>3 o mas</item>
+    </string-array>
+
+    <string-array name="Alergias">
+        <item>Sin Datos</item>
+        <item>1 alerg</item>
+        <item>2 alerg</item>
+        <item>3 o mas</item>
+    </string-array>
+
 </resources>

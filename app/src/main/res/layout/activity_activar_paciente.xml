@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Fondo_App"
+    tools:context=".ActivarPaciente">
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="175dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/work_sans_bold"
+        android:text="Apellido"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView30" />
+
+    <TextView
+        android:id="@+id/txtActivarApellido"
+        android:layout_width="113dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="25dp"
+        android:text="Giannini"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/textView31"
+        app:layout_constraintTop_toBottomOf="@+id/txtActivarNombre" />
+
+    <TextView
+        android:id="@+id/txtActivarNombre"
+        android:layout_width="113dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp"
+        android:text="Dimas"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/textView30"
+        app:layout_constraintTop_toBottomOf="@+id/txtActivarDocumento" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="175dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/work_sans_bold"
+        android:text="Nombre"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarMenu"
+        style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/radius_background"
+        android:minHeight="?android:attr/actionBarSize"
+        android:theme="?android:attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Activar Paciente"
+        app:titleMarginStart="50dp"
+        app:titleTextAppearance="@style/barra_sup"
+        app:titleTextColor="@color/Letras_Barra_sup" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="210dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/work_sans_bold"
+        android:text="Documento"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarMenu" />
+
+    <TextView
+        android:id="@+id/txtActivarDocumento"
+        android:layout_width="119dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="25dp"
+        android:text="40425900"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarMenu" />
+
+    <Button
+        android:id="@+id/btnActivarPersona"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/work_sans"
+        android:text="Activar Paciente"
+        android:textColor="@color/Botones_Color"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:cornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@color/black"
+        app:strokeWidth="3dp" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgActivarPaciente"
+        android:layout_width="97dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="40dp"
+        android:foreground="@drawable/radio_foto_paciente"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtActivarApellido"
+        app:shapeAppearance="@style/fotos_redondeada"
+        tools:srcCompat="@mipmap/ic_launcher_round" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
